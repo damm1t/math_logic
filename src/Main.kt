@@ -14,11 +14,11 @@ var realIndex = IntArray(0)
 var endImprove = -1
 
 fun main(args: Array<String>) {
-    val file = "test"
-    //BufferedReader(InputStreamReader(System.`in`)).use { fin ->
-        Files.newBufferedReader(Paths.get("$file.in")).use { fin ->
-        Files.newBufferedWriter(Paths.get("$file.out")).use { fout ->
-        //BufferedWriter(OutputStreamWriter(System.out)).use { fout ->
+    val file = "1"
+    BufferedReader(InputStreamReader(System.`in`)).use { fin ->
+        //Files.newBufferedReader(Paths.get("$file.in")).use { fin ->
+        //Files.newBufferedWriter(Paths.get("$file.out")).use { fout ->
+        BufferedWriter(OutputStreamWriter(System.out)).use { fout ->
             val lines = fin.readLines()
 
             realIndex = IntArray(lines.size) { i -> i }
@@ -73,12 +73,15 @@ fun main(args: Array<String>) {
             fout.newLine()
 
 
-            implications.clear()
-            indexByImplication.clear()
             for (index in 1 until endImprove + 1) {
                 val line = lines[index]
                 if (usedLines[index]) {
-                    fout.append("[${realIndex[index]}. ${annotateLine(line, index)}] ${outLines[index]}")
+                    val annotation = annotateLine(line, index)
+                    if (annotation is MP) {
+                        val left = realIndex[tree[index].first]
+                        val right = realIndex[tree[index].second]
+                        fout.append("[${realIndex[index]}. ${MP(left, right)}] ${outLines[index]}")
+                    } else fout.append("[${realIndex[index]}. ${annotateLine(line, index)}] ${outLines[index]}")
                     fout.newLine()
                 }
             }

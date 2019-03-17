@@ -12,12 +12,15 @@ private fun tokenize(s: String): List<String> {
     }
     for (i in 0 until s.length) {
         when (s[i]) {
-            '!', '&', '|', '(', ')' -> cancelBuildVariable().also { tmp_tokens.add(s[i].toString()) }
-            '-' -> if (i + 1 < s.length && s[i + 1] == '>') cancelBuildVariable().also { tmp_tokens.add("->") }
-            else System.err.println("Unsupported - on position $i in $s")
-            '>' -> if (i > 0 && s[i - 1] == '-') skip()
-            else System.err.println("Unsupported > on position $i in $s")
-            ' ', '\n', '\t', '\r' -> skip()
+            '!', '&', '|', '(', ')' -> {
+                cancelBuildVariable()
+                tmp_tokens.add(s[i].toString())
+            }
+            '-' -> {
+                cancelBuildVariable()
+                tmp_tokens.add("->")
+            }
+            '>', ' ', '\n', '\t', '\r' -> skip()
             else -> curVariable.append(s[i])
         }
     }
@@ -46,7 +49,11 @@ private fun parseNegation(): Expression {
             skipToken()
             exp
         }
-        else -> Variable(curToken()).also { skipToken() }
+        else -> {
+            val exp = Variable(curToken())
+            skipToken()
+            exp
+        }
     }
 }
 
