@@ -26,7 +26,7 @@ fun main(args: Array<String>) {
             val usedLines = BooleanArray(lines.size) { false }
             val head = list[0]
             val outLines = Array(lines.size) { "" }
-
+            var last = -1
             // Correct check
             val tree = Array(lines.size) { Pair(-1, -1) }
             for (index in 1 until lines.size) {
@@ -41,11 +41,13 @@ fun main(args: Array<String>) {
                 }
                 val impl = line.parse()
                 outLines[index] = impl.toStringImpl()
-                if (endImprove == -1 && head.hashCode() == impl.hashCode()) {
-                    endImprove = index
+                if (head.hashCode() == impl.hashCode()) {
+                    last = index
+                    if (endImprove == -1)
+                        endImprove = index
                 }
             }
-            if (endImprove == -1) {
+            if (endImprove == -1 || last != lines.size - 1) {
                 fout.write("Proof is incorrect")
                 return
             }
