@@ -1,0 +1,4 @@
+A,(A->B)|-B
+[1. Hypothesis 2] (A->B)
+[2. Hypothesis 1] A
+[3. M.P. 1, 2] B
