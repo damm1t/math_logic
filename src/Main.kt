@@ -41,7 +41,7 @@ fun main(args: Array<String>) {
                 }
                 val impl = line.parse()
                 outLines[index] = impl.toStringImpl()
-                if (head.hashCode() == impl.hashCode()) {
+                if (endImprove == -1 && head.hashCode() == impl.hashCode()) {
                     endImprove = index
                 }
             }
