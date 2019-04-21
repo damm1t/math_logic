@@ -13,10 +13,10 @@ val deltaTime2 = { (time2() - st2) / 1000.0 }*/
 
 fun main(args: Array<String>) {
     val file = "test"
-    //BufferedReader(InputStreamReader(System.`in`)).use { fin ->
-    Files.newBufferedReader(Paths.get("$file.in")).use { fin ->
-        Files.newBufferedWriter(Paths.get("$file.out")).use { fout ->
-            //BufferedWriter(OutputStreamWriter(System.out)).use { fout ->
+    BufferedReader(InputStreamReader(System.`in`)).use { fin ->
+        //Files.newBufferedReader(Paths.get("$file.in")).use { fin ->
+        //Files.newBufferedWriter(Paths.get("$file.out")).use { fout ->
+        BufferedWriter(OutputStreamWriter(System.out)).use { fout ->
             val lines = fin.readLines()
             val list: MutableList<Expression> = parseHead(lines[0])
             val head = list[0]
@@ -37,11 +37,11 @@ fun main(args: Array<String>) {
 
                 if (annotation is Axiom || annotation is Assumption) { // ax 1-9
                     fout.write(addAx(impl.toStringImpl(), "ax").toString())
-                }
-                else if (annotation is None) { // actually ax10
-                    fout.write(addAx(getAnyName(impl), "ax10").toString())
-                }
-                else if (annotation is MP) { // d
+                } else if (annotation is None) { // actually ax10
+                    if(impl is Implication){
+                        fout.write(addAx(impl.right.toStringImpl(), "ax10").toString())
+                    }
+                } else if (annotation is MP) { // d
                     val implication = lines[annotation.number].parse()
                     if (implication is Implication) {
                         fout.write(addMP(implication.left.toStringImpl(), implication.right.toStringImpl()).toString())

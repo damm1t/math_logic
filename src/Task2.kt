@@ -14,9 +14,9 @@ var realIndex = IntArray(0)
 var endImprove = -1
 
 fun main(args: Array<String>) {
-    val file = "trip"
+    val file = "ax"
     //BufferedReader(InputStreamReader(System.`in`)).use { fin ->
-    Files.newBufferedReader(Paths.get("$file.in")).use { fin ->
+    Files.newBufferedReader(Paths.get("$file.txt")).use { fin ->
         Files.newBufferedWriter(Paths.get("$file.out")).use { fout ->
             //BufferedWriter(OutputStreamWriter(System.out)).use { fout ->
             val lines = fin.readLines()

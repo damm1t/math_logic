@@ -193,8 +193,8 @@ fun optimize(lines: List<String>): StringBuilder {
             if (annotation is MP) {
                 val left = realIndex[tree[index].first]
                 val right = realIndex[tree[index].second]
-                res.append("[${realIndex[index]}. ${MP(left, right)}] ${outLines[index]}")
-            } else res.append("[${realIndex[index]}. ${annotateLine(line, index)}] ${outLines[index]}")
+                res.append(outLines[index]) //res.append("[${realIndex[index]}. ${MP(left, right)}] ${outLines[index]}")
+            } else res.append(outLines[index]) //res.append("[${realIndex[index]}. ${annotateLine(line, index)}] ${outLines[index]}")
             res.append(System.lineSeparator())
         }
     }
