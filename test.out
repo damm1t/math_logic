@@ -1,6 +1,0 @@
-B,(B->A)|-(A|B)
-[1. Hypothesis 1] B
-[2. Hypothesis 2] (B->A)
-[3. M.P. 2, 1] A
-[4. Ax. sch. 6] (A->(A|B))
-[5. M.P. 4, 3] (A|B)

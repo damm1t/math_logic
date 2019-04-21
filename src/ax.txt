@@ -1,0 +1,11 @@
+cx
+cx -> !cx -> cx
+!cx -> cx
+!cx -> !cx -> !cx
+!cx -> (!cx -> !cx) -> !cx
+(!cx -> !cx -> !cx) -> (!cx -> (!cx -> !cx) -> !cx) -> (!cx -> !cx)
+(!cx -> (!cx -> !cx) -> !cx) -> (!cx -> !cx)
+!cx -> !cx
+(!cx -> cx) -> (!cx -> !cx) -> !!cx
+(!cx -> !cx) -> !!cx
+!!cx

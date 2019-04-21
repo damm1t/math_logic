@@ -45,11 +45,11 @@ class Negation(val negated: Expression) : Expression(hash = calcHash(arrayListOf
     }
 
     override fun toStringImpl(): String {
-        return "($getSymbol${negated.toStringImpl()})"
+        return "$getSymbol${negated.toStringImpl()}"
     }
 }
 
-class Variable(val name: String) : Expression(hash = calcHash(arrayListOf(name.hashCode()))) {
+class Variable(var name: String) : Expression(hash = calcHash(arrayListOf(name.hashCode()))) {
     override val getSymbol get() = "Variable"
 
     override fun toTree(): String {
